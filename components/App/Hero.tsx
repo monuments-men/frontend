@@ -2,7 +2,6 @@ import Container from "components/_shared/Container";
 import Image from "next/image";
 import React, { useEffect, useRef, useState } from "react";
 import lensLogo from "/public/img/logos/lens-logo.jpeg";
-import worldCoinLogo from "/public/img/logos/worldcoin-logo.jpeg";
 import { useConnectWallet, useSetChain } from "@web3-onboard/react";
 import { useContractContext } from "context/ContractContext";
 import { useUserContext } from "context/UserContext";
@@ -10,6 +9,7 @@ import { ethers } from "ethers";
 import { lensMumbaiAddress } from "lib/contracts";
 import ERC721 from "lib/contracts/abi/ERC721.json";
 import { mumbaiChainId } from "lib";
+import WorldcoinVerify from "components/Worldcoin";
 
 const AppHero = ({ data, imgPos }) => {
     const [{ wallet }] = useConnectWallet();
@@ -26,16 +26,25 @@ const AppHero = ({ data, imgPos }) => {
     }, [connectedChain, wallet]);
 
     const buttons = [
-        { label: "Lens", img: lensLogo, color: "text-green-600", diabled: false },
-        { label: "WorldCoin", img: worldCoinLogo, color: "text-black", diabled: false },
         { label: "No ID", color: "bg-gray-900 text-white dark:bg-gray-600", diabled: false },
+        { label: "Lens", img: lensLogo, color: "text-green-600", diabled: false },
     ];
-
-    console.log("lenstokenid", lensTokenId);
 
     const verifyWithLens = async () => {
         try {
             const tx = await multiChainVerifier.registerWithLens(lensTokenId, 10000, "0x");
+            const recipt = await tx.wait();
+            if (recipt.status == 1) {
+                console.log("verified");
+            }
+        } catch (error) {
+            console.log(error);
+        }
+    };
+
+    const registerWithNoID = async () => {
+        try {
+            const tx = await multiChainVerifier.registerWithoutId(10000, "0x");
             const recipt = await tx.wait();
             if (recipt.status == 1) {
                 console.log("verified");
@@ -115,7 +124,7 @@ const AppHero = ({ data, imgPos }) => {
                             {buttons.map((button, index) => (
                                 <div
                                     key={index}
-                                    onClick={() => button.label === "Lens" && verifyWithLens()}
+                                    onClick={() => (button.label === "Lens" ? verifyWithLens() : registerWithNoID())}
                                     className={`flex ${button.color} ${
                                         button.diabled && "cursor-not-allowed bg-gray-600 text-white"
                                     } w-[300px] cursor-pointer items-center gap-5 rounded-lg shadow-md dark:bg-white`}
@@ -130,6 +139,7 @@ const AppHero = ({ data, imgPos }) => {
                                     </div>
                                 </div>
                             ))}
+                            <WorldcoinVerify />
                         </div>
                     </div>
                 </div>
