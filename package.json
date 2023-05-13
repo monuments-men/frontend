@@ -21,6 +21,7 @@
     "@web3-onboard/core": "^2.18.0",
     "@web3-onboard/injected-wallets": "^2.8.1",
     "@web3-onboard/react": "^2.6.5",
+    "@worldcoin/idkit": "^0.4.9",
     "eslint": "8.32.0",
     "eslint-config-next": "13.1.6",
     "ethers": "^5.7.0",
