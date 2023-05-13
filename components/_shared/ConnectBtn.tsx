@@ -1,6 +1,6 @@
 import injectedModule from "@web3-onboard/injected-wallets";
 import { init } from "@web3-onboard/react";
-import { addressShortFormat, mumbaiChainId } from "../../lib";
+import { addressShortFormat, maticChainId, mumbaiChainId } from "../../lib";
 import { useUserContext } from "../../context/UserContext";
 import useConnect from "../../hooks/useConnect";
 
@@ -9,6 +9,12 @@ const injected = injectedModule();
 init({
     wallets: [injected],
     chains: [
+        {
+            id: maticChainId,
+            token: "MATIC",
+            label: "Polygon Mainnet",
+            rpcUrl: "https://polygon.llamarpc.com",
+        },
         {
             id: mumbaiChainId,
             token: "MATIC",

@@ -6,7 +6,7 @@ export interface State {
     multiChainVerifier: any;
 
     mumbaiNFTcontract: any;
-    mumbaiLens: any;
+    lens: any;
     fujiNFTcontract: any;
 }
 
@@ -16,6 +16,6 @@ export const initialState: State = {
     multiChainVerifier: undefined,
 
     mumbaiNFTcontract: undefined,
-    mumbaiLens: undefined,
+    lens: undefined,
     fujiNFTcontract: undefined,
 };

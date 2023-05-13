@@ -3,7 +3,7 @@ import { State } from "./store";
 export type Action =
     | { type: "UPDATE_SELECTED_NETWORK"; selectedNetwork: State["selectedNetwork"] }
     | { type: "UPDATE_MUMBAI_NFT_CONTRACT"; mumbaiNFTcontract: State["mumbaiNFTcontract"] }
-    | { type: "UPDATE_MUMBAI_LENS"; mumbaiLens: State["mumbaiLens"] }
+    | { type: "UPDATE_LENS"; lens: State["lens"] }
     | { type: "UPDATE_FUJI_NFT_CONTRACT"; fujiNFTcontract: State["fujiNFTcontract"] }
     | { type: "UPDATE_MULTICHAIN_VERIFIER"; multiChainVerifier: State["multiChainVerifier"] };
 
@@ -19,10 +19,10 @@ export const reducer = (state: State, action: Action): State => {
                 ...state,
                 mumbaiNFTcontract: action.mumbaiNFTcontract,
             };
-        case "UPDATE_MUMBAI_LENS":
+        case "UPDATE_LENS":
             return {
                 ...state,
-                mumbaiLens: action.mumbaiLens,
+                lens: action.lens,
             };
         case "UPDATE_FUJI_NFT_CONTRACT":
             return {

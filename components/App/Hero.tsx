@@ -6,22 +6,22 @@ import { useConnectWallet, useSetChain } from "@web3-onboard/react";
 import { useContractContext } from "context/ContractContext";
 import { useUserContext } from "context/UserContext";
 import { ethers } from "ethers";
-import { lensMumbaiAddress } from "lib/contracts";
+import { lensAddress } from "lib/contracts";
 import ERC721 from "lib/contracts/abi/ERC721.json";
-import { mumbaiChainId } from "lib";
+import { maticChainId } from "lib";
 import WorldcoinVerify from "components/Worldcoin";
 
 const AppHero = ({ data, imgPos }) => {
     const [{ wallet }] = useConnectWallet();
     const [{ connectedChain }, setChain] = useSetChain();
-    const [{ mumbaiLens, multiChainVerifier }, dispatch] = useContractContext();
+    const [{ lens, multiChainVerifier }, dispatch] = useContractContext();
     const [{ address, signer, provider }] = useUserContext();
     const previousChainId = useRef<string>();
     const [lensTokenId, setLensTokenId] = useState<string>("");
 
     useEffect(() => {
-        if (wallet && connectedChain?.id !== mumbaiChainId) {
-            setChain({ chainId: mumbaiChainId });
+        if (wallet && connectedChain?.id !== maticChainId) {
+            setChain({ chainId: maticChainId });
         }
     }, [connectedChain, wallet]);
 
@@ -54,11 +54,13 @@ const AppHero = ({ data, imgPos }) => {
         }
     };
 
+    console.log("multiChainVerifier", multiChainVerifier);
+
     const checkLens = async () => {
         try {
-            const tokenAmount = await mumbaiLens.balanceOf(address);
+            const tokenAmount = await lens.balanceOf(address);
             if (Number(tokenAmount.toString()) > 0) {
-                const firstToken = await mumbaiLens.tokenOfOwnerByIndex(address, 0);
+                const firstToken = await lens.tokenOfOwnerByIndex(address, 0);
                 setLensTokenId(firstToken.toString());
             }
         } catch (error) {
@@ -67,7 +69,7 @@ const AppHero = ({ data, imgPos }) => {
     };
 
     useEffect(() => {
-        if (!previousChainId.current && connectedChain?.id === "0x13881") {
+        if (!previousChainId.current && connectedChain?.id === maticChainId) {
             previousChainId.current = connectedChain.id;
         }
         if (previousChainId?.current !== connectedChain?.id && wallet) {
@@ -76,19 +78,19 @@ const AppHero = ({ data, imgPos }) => {
     }, [connectedChain?.id]);
 
     useEffect(() => {
-        if ((signer || provider) && connectedChain?.id === "0x13881") {
+        if ((signer || provider) && connectedChain?.id === maticChainId) {
             dispatch({
-                type: "UPDATE_MUMBAI_LENS",
-                mumbaiLens: new ethers.Contract(lensMumbaiAddress, ERC721, signer || provider),
+                type: "UPDATE_LENS",
+                lens: new ethers.Contract(lensAddress, ERC721, signer || provider),
             });
         }
     }, [signer, provider, connectedChain]);
 
     useEffect(() => {
-        if (mumbaiLens) {
+        if (lens) {
             checkLens();
         }
-    }, [mumbaiLens]);
+    }, [lens]);
 
     return (
         <>

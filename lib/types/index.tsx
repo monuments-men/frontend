@@ -5,7 +5,8 @@ export type NetworkType =
     | "Polygon (Mumbai)"
     | "Gnosis (Testnet)"
     | "Linea (Testnet)"
-    | "Fuji (Testnet)";
+    | "Fuji (Testnet)"
+    | "Polygon (Mainnet)";
 
 export interface BlockchainType {
     name: NetworkType;

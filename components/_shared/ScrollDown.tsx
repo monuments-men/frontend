@@ -4,13 +4,19 @@ import injectedModule from "@web3-onboard/injected-wallets";
 import { init, useConnectWallet, useSetChain } from "@web3-onboard/react";
 import { useContractContext } from "context/ContractContext";
 import { BlockchainType } from "lib/types";
-import { mumbaiChainId } from "lib";
+import { maticChainId, mumbaiChainId } from "lib";
 
 const injected = injectedModule();
 
 init({
     wallets: [injected],
     chains: [
+        {
+            id: maticChainId,
+            token: "MATIC",
+            label: "Polygon Mainnet",
+            rpcUrl: "https://polygon.llamarpc.com",
+        },
         {
             id: mumbaiChainId,
             token: "MATIC",
@@ -70,6 +76,7 @@ const blockchainList: BlockchainType[] = [
     { name: "Arbitrum (Goerli)", img: "/img/logos/networks/arbitrum-logo.png", chainId: "0x66eed" },
     { name: "Optimism (Goerli)", img: "/img/logos/networks/optimism-logo.png", chainId: "0x1a4" },
     { name: "zkEVM (Goerli)", img: "/img/logos/networks/zkevm-logo.png", chainId: "0x5a2" },
+    { name: "Polygon (Mainnet)", img: "/img/logos/networks/polygon-logo.png", chainId: maticChainId },
     { name: "Polygon (Mumbai)", img: "/img/logos/networks/polygon-logo.png", chainId: mumbaiChainId },
     { name: "Gnosis (Testnet)", img: "/img/logos/networks/gnosis-logo.png", chainId: "0x27D8" },
     { name: "Linea (Testnet)", img: "/img/logos/networks/linea-logo.png", chainId: "0xE704" },

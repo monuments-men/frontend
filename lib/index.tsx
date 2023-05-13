@@ -4,3 +4,4 @@ export const addressShortFormat = (address: string, amount?: number) => {
 };
 
 export const mumbaiChainId = "0x13881";
+export const maticChainId = "0x89";
