@@ -9,8 +9,6 @@ const Hero = () => {
     const [minting, setMinting] = useState(false);
     const [minted, setMinted] = useState(false);
 
-    console.log(fujiNFTcontract);
-
     const mint = async () => {
         try {
             const contractToCall = selectedNetwork === "Polygon (Mumbai)" ? mumbaiNFTcontract : fujiNFTcontract;

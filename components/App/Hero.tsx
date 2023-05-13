@@ -44,7 +44,8 @@ const AppHero = ({ data, imgPos }) => {
 
     const registerWithNoID = async () => {
         try {
-            const tx = await multiChainVerifier.registerWithoutId(10000, "0x");
+            const tx = await multiChainVerifier.registerWithoutId(10, "");
+            console.log("tx", tx);
             const recipt = await tx.wait();
             if (recipt.status == 1) {
                 console.log("verified");

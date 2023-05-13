@@ -67,7 +67,7 @@ const useConnect = () => {
     }, [provider, signer]);
 
     useEffect(() => {
-        const walletData = window.localStorage.getItem("galaxyThroneConnectedWallets");
+        const walletData = window.localStorage.getItem("monumentsmen");
         if (walletData) {
             const pastConnectedWallets = JSON.parse(walletData);
             if (pastConnectedWallets?.length > 0)
@@ -83,7 +83,7 @@ const useConnect = () => {
             if (wallets?.length > 0) {
                 connected = wallets.map(({ label }) => label);
             }
-            window.localStorage.setItem("galaxyThroneConnectedWallets", JSON.stringify(connected));
+            window.localStorage.setItem("monumentsmen", JSON.stringify(connected));
         }
     }, [wallets]);
 

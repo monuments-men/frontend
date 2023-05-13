@@ -13,7 +13,7 @@ init({
             id: maticChainId,
             token: "MATIC",
             label: "Polygon Mainnet",
-            rpcUrl: "https://polygon.llamarpc.com",
+            rpcUrl: "https://polygon-rpc.com",
         },
         {
             id: mumbaiChainId,
