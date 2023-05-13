@@ -15,6 +15,42 @@ init({
             label: "Polygon Mumbai",
             rpcUrl: "https://rpc-mumbai.maticvigil.com",
         },
+        {
+            id: "0x66eed",
+            token: "ETH",
+            label: "Arbitrum Goerli",
+            rpcUrl: "https://endpoints.omniatech.io/v1/arbitrum/goerli/public",
+        },
+        {
+            id: "0x1a4",
+            token: "ETH",
+            label: "Optimism Goerli",
+            rpcUrl: "https://endpoints.omniatech.io/v1/op/goerli/public",
+        },
+        {
+            id: "0x5a2",
+            token: "ETH",
+            label: "zkEVM Goerli",
+            rpcUrl: "https://rpc.public.zkevm-test.net",
+        },
+        {
+            id: "0x27D8",
+            token: "xDAI",
+            label: "Gnosis Testnet",
+            rpcUrl: "https://rpc.testnet.gnosis.io",
+        },
+        {
+            id: "0xE704",
+            token: "ETH",
+            label: "Linea Testnet",
+            rpcUrl: "https://rpc.testnet.linea.exchange",
+        },
+        {
+            id: "0xAA36A7",
+            token: "ETH",
+            label: "Sepolia",
+            rpcUrl: "https://rpc.sepolia.io",
+        },
     ],
     accountCenter: {
         desktop: {
