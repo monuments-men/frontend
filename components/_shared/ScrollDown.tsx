@@ -126,7 +126,7 @@ const ScrollDownMenu: React.FC = () => {
             </button>
 
             {isOpen && (
-                <ul className="absolute mt-2 w-[300px] rounded-md border border-gray-300 bg-white py-2 shadow-lg">
+                <ul className="absolute mt-2 w-[300px] rounded-md border border-gray-300 bg-white py-2 shadow-lg dark:text-black">
                     {blockchainList.map((blockchain, i) => (
                         <li
                             key={i}

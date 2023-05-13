@@ -28,7 +28,7 @@ const AppHero = ({ data, imgPos }) => {
     const buttons = [
         { label: "Lens", img: lensLogo, color: "text-green-600", diabled: false },
         { label: "WorldCoin", img: worldCoinLogo, color: "text-black", diabled: false },
-        { label: "No ID", color: "bg-gray-900 text-white", diabled: false },
+        { label: "No ID", color: "bg-gray-900 text-white dark:bg-gray-600", diabled: false },
     ];
 
     console.log("lenstokenid", lensTokenId);
@@ -118,7 +118,7 @@ const AppHero = ({ data, imgPos }) => {
                                     onClick={() => button.label === "Lens" && verifyWithLens()}
                                     className={`flex ${button.color} ${
                                         button.diabled && "cursor-not-allowed bg-gray-600 text-white"
-                                    } w-[300px] cursor-pointer items-center gap-5 rounded-lg shadow-md`}
+                                    } w-[300px] cursor-pointer items-center gap-5 rounded-lg shadow-md dark:bg-white`}
                                 >
                                     {button.img && (
                                         <div className="relative h-[50px] w-[50px]">
