@@ -17,10 +17,9 @@ const AppHero = ({ data, imgPos }) => {
     }, [connectedChain, wallet]);
 
     const buttons = [
-        { label: "Lens", img: lensLogo, color: "text-green-600" },
-        { label: "WorldCoin", img: worldCoinLogo, color: "text-black" },
-        { label: "PolygonId", img: polygonLogo, color: "text-[#7823BA]" },
-        { label: "No ID", color: "bg-gray-900 text-white" },
+        { label: "Lens", img: lensLogo, color: "text-green-600", diabled: false },
+        { label: "WorldCoin", img: worldCoinLogo, color: "text-black", diabled: false },
+        { label: "No ID", color: "bg-gray-900 text-white", diabled: false },
     ];
 
     return (
@@ -54,13 +53,20 @@ const AppHero = ({ data, imgPos }) => {
 
                         <div className="mt-5 flex w-full flex-col gap-3">
                             {buttons.map((button, index) => (
-                                <div key={index} className={`flex ${button.color} w-[300px] items-center gap-3 rounded-lg shadow-md`}>
+                                <div
+                                    key={index}
+                                    className={`flex ${button.color} ${
+                                        button.diabled && "cursor-not-allowed bg-gray-600 text-white"
+                                    } w-[300px] cursor-pointer items-center gap-5 rounded-lg shadow-md`}
+                                >
                                     {button.img && (
                                         <div className="relative h-[50px] w-[50px]">
                                             <Image src={button.img} alt="logo" fill className="rounded-lg" />
                                         </div>
                                     )}
-                                    <button className="w-[150px] rounded py-3 text-lg font-semibold">{button.label}</button>
+                                    <div className={`w-[150px] rounded py-3 text-lg font-semibold ${button.label === "No ID" && "ml-[70px]"}`}>
+                                        {button.label}
+                                    </div>
                                 </div>
                             ))}
                         </div>
