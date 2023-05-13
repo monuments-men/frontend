@@ -23,7 +23,7 @@ const Navbar = () => {
                                         <span>
                                             <Image src="/img/logo.svg" alt="N" width="32" height="32" className="w-8" />
                                         </span>
-                                        <span>Nextly</span>
+                                        <span>Monuments Men</span>
                                     </span>
                                 </Link>
 

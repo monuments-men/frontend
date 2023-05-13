@@ -12,15 +12,15 @@ const Home = () => {
     return (
         <>
             <Head>
-                <title>Nextly - Free Nextjs & TailwindCSS Landing Page Template</title>
-                <meta name="description" content="Nextly is a free landing page template built with next.js & Tailwind CSS" />
+                <title>Monuments Men - Free Nextjs & TailwindCSS Landing Page Template</title>
+                <meta name="description" content="Monuments Men is a free landing page template built with next.js & Tailwind CSS" />
                 <link rel="icon" href="/favicon.ico" />
             </Head>
 
             <Hero />
-            <SectionTitle pretitle="Nextly Benefits" title=" Why should you use this landing page">
-                Nextly is a free landing page & marketing website template for startups and indie projects. Its built with Next.js & TailwindCSS. And
-                its completely open-source.
+            <SectionTitle pretitle="Monuments Men Benefits" title=" Why should you use this landing page">
+                Monuments Men is a free landing page & marketing website template for startups and indie projects. Its built with Next.js &
+                TailwindCSS. And its completely open-source.
             </SectionTitle>
             <Benefits data={benefitOne} />
             <Benefits imgPos="right" data={benefitTwo} />
