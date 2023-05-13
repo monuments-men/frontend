@@ -1,14 +1,10 @@
-import { useUserContext } from "context/UserContext";
 import useConnect from "hooks/useConnect";
 import { useEffect, useRef, useState } from "react";
 import injectedModule from "@web3-onboard/injected-wallets";
 import { init, useConnectWallet, useSetChain } from "@web3-onboard/react";
-
-interface Blockchain {
-    name: string;
-    img: string;
-    chainId: string;
-}
+import { useContractContext } from "context/ContractContext";
+import { BlockchainType } from "lib/types";
+import { mumbaiChainId } from "lib";
 
 const injected = injectedModule();
 
@@ -16,7 +12,7 @@ init({
     wallets: [injected],
     chains: [
         {
-            id: "0x13881",
+            id: mumbaiChainId,
             token: "MATIC",
             label: "Polygon Mumbai",
             rpcUrl: "https://rpc-mumbai.maticvigil.com",
@@ -52,10 +48,10 @@ init({
             rpcUrl: "https://rpc.testnet.linea.exchange",
         },
         {
-            id: "0xAA36A7",
-            token: "ETH",
-            label: "Sepolia",
-            rpcUrl: "https://rpc.sepolia.io",
+            id: "0xa869",
+            token: "AVAX",
+            label: "Avalanche Fuji Testnet",
+            rpcUrl: "https://endpoints.omniatech.io/v1/avax/fuji/public",
         },
     ],
     accountCenter: {
@@ -70,34 +66,39 @@ init({
     },
 });
 
-const blockchainList = [
+const blockchainList: BlockchainType[] = [
     { name: "Arbitrum (Goerli)", img: "/img/logos/networks/arbitrum-logo.png", chainId: "0x66eed" },
     { name: "Optimism (Goerli)", img: "/img/logos/networks/optimism-logo.png", chainId: "0x1a4" },
     { name: "zkEVM (Goerli)", img: "/img/logos/networks/zkevm-logo.png", chainId: "0x5a2" },
-    { name: "Polygon (Mumbai)", img: "/img/logos/networks/polygon-logo.png", chainId: "0x13881" },
+    { name: "Polygon (Mumbai)", img: "/img/logos/networks/polygon-logo.png", chainId: mumbaiChainId },
     { name: "Gnosis (Testnet)", img: "/img/logos/networks/gnosis-logo.png", chainId: "0x27D8" },
     { name: "Linea (Testnet)", img: "/img/logos/networks/linea-logo.png", chainId: "0xE704" },
-    { name: "Sepolia", img: "/img/logos/networks/ethereum-logo.png", chainId: "0xAA36A7" },
+    { name: "Fuji (Testnet)", img: "/img/logos/networks/avalanche-logo.png", chainId: "0xa869" },
 ];
 
 const ScrollDownMenu: React.FC = () => {
     const [{ wallet }] = useConnectWallet();
     const [{ connectedChain }, setChain] = useSetChain();
+    const [_, dispatch] = useContractContext();
     const { handleConnect } = useConnect();
 
     const previousChainId = useRef<string>();
     const [isOpen, setIsOpen] = useState<boolean>(false);
-    const [selectedBlockchain, setSelectedBlockchain] = useState<Blockchain>();
+    const [selectedBlockchain, setSelectedBlockchain] = useState<BlockchainType>();
 
     const handleToggle = () => {
         setIsOpen(!isOpen);
     };
 
-    const handleSelect = (blockchain: Blockchain) => {
+    const handleSelect = (blockchain: BlockchainType) => {
         if (!wallet) {
             handleConnect();
         }
         if (wallet) {
+            dispatch({
+                type: "UPDATE_SELECTED_NETWORK",
+                selectedNetwork: blockchain.name,
+            });
             setChain({ chainId: blockchain.chainId });
             setSelectedBlockchain(blockchain);
             setIsOpen(false);

@@ -3,8 +3,9 @@ import { useEffect } from "react";
 import { useUserContext } from "../context/UserContext";
 import { ethers } from "ethers";
 import { useContractContext } from "../context/ContractContext";
-import { mumbaiNFTAddress } from "lib/contracts";
+import { multiChainVerifier, mumbaiNFTAddress } from "lib/contracts";
 import NFTabi from "lib/contracts/abi/ABI.json";
+import multiChainVerifierAbi from "lib/contracts/abi/MultiChainVerifier.json";
 
 const useConnect = () => {
     const [{ wallet, connecting }, connect, disconnect] = useConnectWallet();
@@ -51,8 +52,16 @@ const useConnect = () => {
     useEffect(() => {
         if (provider || signer) {
             dispatch({
-                type: "UPDATE_DIAMOND",
-                NFTcontract: new ethers.Contract(mumbaiNFTAddress, NFTabi, signer || provider),
+                type: "UPDATE_MUMBAI_NFT_CONTRACT",
+                mumbaiNFTcontract: new ethers.Contract(mumbaiNFTAddress, NFTabi, signer || provider),
+            });
+            // dispatch({
+            //     type: "UPDATE_FUJI_NFT_CONTRACT",
+            //     fujiNFTcontract: new ethers.Contract(, NFTabi, signer || provider),
+            // });
+            dispatch({
+                type: "UPDATE_MULTICHAIN_VERIFIER",
+                multiChainVerifier: new ethers.Contract(multiChainVerifier, multiChainVerifierAbi, signer || provider),
             });
         }
     }, [provider, signer]);

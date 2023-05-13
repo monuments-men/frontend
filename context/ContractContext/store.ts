@@ -1,9 +1,21 @@
+import { NetworkType } from "lib/types";
+
 export interface State {
-    NFTcontract: any;
+    selectedNetwork: NetworkType;
+
+    multiChainVerifier: any;
+
+    mumbaiNFTcontract: any;
     mumbaiLens: any;
+    fujiNFTcontract: any;
 }
 
 export const initialState: State = {
-    NFTcontract: undefined,
+    selectedNetwork: undefined,
+
+    multiChainVerifier: undefined,
+
+    mumbaiNFTcontract: undefined,
     mumbaiLens: undefined,
+    fujiNFTcontract: undefined,
 };

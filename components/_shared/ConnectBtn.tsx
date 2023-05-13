@@ -1,6 +1,6 @@
 import injectedModule from "@web3-onboard/injected-wallets";
 import { init } from "@web3-onboard/react";
-import { addressShortFormat } from "../../lib";
+import { addressShortFormat, mumbaiChainId } from "../../lib";
 import { useUserContext } from "../../context/UserContext";
 import useConnect from "../../hooks/useConnect";
 
@@ -10,7 +10,7 @@ init({
     wallets: [injected],
     chains: [
         {
-            id: "0x13881",
+            id: mumbaiChainId,
             token: "MATIC",
             label: "Polygon Mumbai",
             rpcUrl: "https://rpc-mumbai.maticvigil.com",
@@ -46,10 +46,10 @@ init({
             rpcUrl: "https://rpc.testnet.linea.exchange",
         },
         {
-            id: "0xAA36A7",
-            token: "ETH",
-            label: "Sepolia",
-            rpcUrl: "https://rpc.sepolia.io",
+            id: "0xa869",
+            token: "AVAX",
+            label: "Avalanche Fuji Testnet",
+            rpcUrl: "https://endpoints.omniatech.io/v1/avax/fuji/public",
         },
     ],
     accountCenter: {

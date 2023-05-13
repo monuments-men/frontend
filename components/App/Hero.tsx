@@ -10,18 +10,19 @@ import { useUserContext } from "context/UserContext";
 import { ethers } from "ethers";
 import { lensMumbaiAddress } from "lib/contracts";
 import ERC721 from "lib/contracts/abi/ERC721.json";
+import { mumbaiChainId } from "lib";
 
 const AppHero = ({ data, imgPos }) => {
     const [{ wallet }] = useConnectWallet();
     const [{ connectedChain }, setChain] = useSetChain();
-    const [{ mumbaiLens }, dispatch] = useContractContext();
+    const [{ mumbaiLens, multiChainVerifier }, dispatch] = useContractContext();
     const [{ address, signer, provider }] = useUserContext();
     const previousChainId = useRef<string>();
     const [lensTokenId, setLensTokenId] = useState<string>("");
 
     useEffect(() => {
-        if (wallet && connectedChain?.id !== "0x13881") {
-            setChain({ chainId: "0x13881" });
+        if (wallet && connectedChain?.id !== mumbaiChainId) {
+            setChain({ chainId: mumbaiChainId });
         }
     }, [connectedChain, wallet]);
 
@@ -30,6 +31,20 @@ const AppHero = ({ data, imgPos }) => {
         { label: "WorldCoin", img: worldCoinLogo, color: "text-black", diabled: false },
         { label: "No ID", color: "bg-gray-900 text-white", diabled: false },
     ];
+
+    console.log("lenstokenid", lensTokenId);
+
+    const verifyWithLens = async () => {
+        try {
+            const tx = await multiChainVerifier.registerWithLens(lensTokenId, 10000, "0x");
+            const recipt = await tx.wait();
+            if (recipt.status == 1) {
+                console.log("verified");
+            }
+        } catch (error) {
+            console.log(error);
+        }
+    };
 
     const checkLens = async () => {
         try {
@@ -101,6 +116,7 @@ const AppHero = ({ data, imgPos }) => {
                             {buttons.map((button, index) => (
                                 <div
                                     key={index}
+                                    onClick={() => button.label === "Lens" && verifyWithLens()}
                                     className={`flex ${button.color} ${
                                         button.diabled && "cursor-not-allowed bg-gray-600 text-white"
                                     } w-[300px] cursor-pointer items-center gap-5 rounded-lg shadow-md`}

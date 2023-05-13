@@ -4,14 +4,17 @@ import { useState } from "react";
 import ScrollDown from "components/_shared/ScrollDown";
 
 const Hero = () => {
-    const [{ NFTcontract }] = useContractContext();
+    const [{ mumbaiNFTcontract, fujiNFTcontract, selectedNetwork }] = useContractContext();
 
     const [minting, setMinting] = useState(false);
     const [minted, setMinted] = useState(false);
 
+    console.log(fujiNFTcontract);
+
     const mint = async () => {
         try {
-            const tx = await NFTcontract.mint();
+            const contractToCall = selectedNetwork === "Polygon (Mumbai)" ? mumbaiNFTcontract : fujiNFTcontract;
+            const tx = await contractToCall.mint();
             setMinting(true);
             const receipt = await tx.wait();
             if (receipt.status == 1) {
