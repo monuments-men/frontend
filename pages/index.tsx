@@ -1,7 +1,5 @@
 import Head from "next/head";
-
 import { benefitOne, benefitTwo } from "../lib/data";
-import Navbar from "components/_shared/Navbar";
 import Hero from "components/LandingPage/Hero";
 import SectionTitle from "components/LandingPage/SectionTitle";
 import Benefits from "components/LandingPage/Benefits";
@@ -9,7 +7,6 @@ import Video from "components/LandingPage/Video";
 import Testimonials from "components/LandingPage/Testimonials";
 import Faq from "components/LandingPage/Faq";
 import Cta from "components/LandingPage/Cta";
-import Footer from "components/_shared/Footer";
 
 const Home = () => {
     return (
@@ -20,7 +17,6 @@ const Home = () => {
                 <link rel="icon" href="/favicon.ico" />
             </Head>
 
-            <Navbar />
             <Hero />
             <SectionTitle pretitle="Nextly Benefits" title=" Why should you use this landing page">
                 Nextly is a free landing page & marketing website template for startups and indie projects. Its built with Next.js & TailwindCSS. And
@@ -42,7 +38,6 @@ const Home = () => {
             </SectionTitle>
             <Faq />
             <Cta />
-            <Footer />
         </>
     );
 };

@@ -2,18 +2,21 @@ import { ThemeProvider } from "next-themes";
 import "../css/tailwind.css";
 import UserContextProvider from "../context/UserContext";
 import ContractContextProvider from "../context/ContractContext";
+import Navbar from "components/_shared/Navbar";
+import Footer from "components/_shared/Footer";
 
 function MyApp({ Component, pageProps }) {
-  // console.log("window", window);
-  return (
-    <ThemeProvider attribute="class">
-      <UserContextProvider>
-        <ContractContextProvider>
-          <Component {...pageProps} />
-        </ContractContextProvider>
-      </UserContextProvider>
-    </ThemeProvider>
-  );
+    return (
+        <ThemeProvider attribute="class">
+            <UserContextProvider>
+                <ContractContextProvider>
+                    <Navbar />
+                    <Component {...pageProps} />
+                    <Footer />
+                </ContractContextProvider>
+            </UserContextProvider>
+        </ThemeProvider>
+    );
 }
 
 export default MyApp;

@@ -1,7 +1,7 @@
 export interface State {
-  diamondContract: any;
+    NFTcontract: any;
 }
 
 export const initialState: State = {
-  diamondContract: undefined,
+    NFTcontract: undefined,
 };
