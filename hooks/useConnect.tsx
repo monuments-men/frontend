@@ -5,7 +5,7 @@ import { ethers } from "ethers";
 import { useContractContext } from "../context/ContractContext";
 import { multiChainVerifier, mumbaiNFTAddress } from "lib/contracts";
 import NFTabi from "lib/contracts/abi/ABI.json";
-import multiChainVerifierAbi from "lib/contracts/abi/MultiChainVerifier.json";
+import multiChainVerifierAbi from "lib/contracts/abi/MultichainVerifier.json";
 
 const useConnect = () => {
     const [{ wallet, connecting }, connect, disconnect] = useConnectWallet();
