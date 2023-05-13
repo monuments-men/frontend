@@ -22,6 +22,7 @@ const AppHero = ({ data, imgPos }) => {
         { label: "PolygonId", img: polygonLogo, color: "text-[#7823BA]" },
         { label: "No ID", color: "bg-gray-900 text-white" },
     ];
+
     return (
         <>
             <Container className="mb-20 flex flex-wrap lg:flex-nowrap lg:gap-10 ">
