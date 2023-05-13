@@ -3,7 +3,6 @@ import Image from "next/image";
 import React, { useEffect, useRef, useState } from "react";
 import lensLogo from "/public/img/logos/lens-logo.jpeg";
 import worldCoinLogo from "/public/img/logos/worldcoin-logo.jpeg";
-import polygonLogo from "../../public/img/logos/polygon-logo.png";
 import { useConnectWallet, useSetChain } from "@web3-onboard/react";
 import { useContractContext } from "context/ContractContext";
 import { useUserContext } from "context/UserContext";
