@@ -1,11 +1,9 @@
-import { useSetChain } from "@web3-onboard/react";
 import Container from "components/_shared/Container";
 import { useContractContext } from "context/ContractContext";
 import { useState } from "react";
 import ScrollDown from "components/_shared/ScrollDown";
 
 const Hero = () => {
-    const [{ connectedChain }, setChain] = useSetChain();
     const [{ NFTcontract }] = useContractContext();
 
     const [minting, setMinting] = useState(false);
