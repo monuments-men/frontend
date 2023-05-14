@@ -103,7 +103,7 @@ const Hero = () => {
                     </div>
                 </div>
                 <div className="flex w-full items-start justify-center lg:w-1/2">
-                    <img src="/img/hero.png" alt="Hero Illustration" className="h-[617px] w-[616px] object-cover" />
+                    <img src="/img/landing.png" alt="Hero Illustration" className="h-[617px] w-[616px] rounded-xl object-cover" />
                 </div>
             </Container>
         </>

@@ -101,18 +101,10 @@ const AppHero = ({ data, imgPos }) => {
 
     return (
         <>
-            <Container className="mb-20 flex flex-wrap lg:flex-nowrap lg:gap-10 ">
+            <Container className="mb-20 flex flex-row-reverse flex-wrap lg:flex-nowrap lg:gap-10 ">
                 <div className={`flex w-full items-center justify-center lg:w-1/2 ${imgPos === "right" ? "lg:order-1" : ""}`}>
                     <div>
-                        <Image
-                            src={data.image}
-                            width="521"
-                            height="410"
-                            alt="Benefits"
-                            className={"object-cover"}
-                            placeholder="blur"
-                            blurDataURL={data.image.src}
-                        />
+                        <img src="/img/hero-2.png" alt="Benefits" className={"h-[500px] w-[610px] rounded-xl object-cover"} />
                     </div>
                 </div>
 
