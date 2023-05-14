@@ -52,10 +52,10 @@ init({
             rpcUrl: "https://rpc.testnet.linea.exchange",
         },
         {
-            id: "0xa869",
-            token: "AVAX",
-            label: "Avalanche Fuji Testnet",
-            rpcUrl: "https://endpoints.omniatech.io/v1/avax/fuji/public",
+            id: "0xaa36a7",
+            token: "ETH",
+            label: "Sepolia Testnet",
+            rpcUrl: "https://rpc2.sepolia.org",
         },
     ],
     accountCenter: {

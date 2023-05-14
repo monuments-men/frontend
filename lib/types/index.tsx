@@ -4,9 +4,7 @@ export type NetworkType =
     | "zkEVM (Goerli)"
     | "Polygon (Mumbai)"
     | "Gnosis (Testnet)"
-    | "Linea (Testnet)"
-    | "Fuji (Testnet)"
-    | "Polygon (Mainnet)";
+    | "Sepolia (Testnet)";
 
 export interface BlockchainType {
     name: NetworkType;

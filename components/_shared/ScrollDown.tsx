@@ -54,10 +54,10 @@ init({
             rpcUrl: "https://rpc.testnet.linea.exchange",
         },
         {
-            id: "0xa869",
-            token: "AVAX",
-            label: "Avalanche Fuji Testnet",
-            rpcUrl: "https://endpoints.omniatech.io/v1/avax/fuji/public",
+            id: "0xaa36a7",
+            token: "ETH",
+            label: "Sepolia Testnet",
+            rpcUrl: "https://rpc2.sepolia.org",
         },
     ],
     accountCenter: {
@@ -76,11 +76,9 @@ const blockchainList: BlockchainType[] = [
     { name: "Arbitrum (Goerli)", img: "/img/logos/networks/arbitrum-logo.png", chainId: "0x66eed" },
     { name: "Optimism (Goerli)", img: "/img/logos/networks/optimism-logo.png", chainId: "0x1a4" },
     { name: "zkEVM (Goerli)", img: "/img/logos/networks/zkevm-logo.png", chainId: "0x5a2" },
-    { name: "Polygon (Mainnet)", img: "/img/logos/networks/polygon-logo.png", chainId: maticChainId },
     { name: "Polygon (Mumbai)", img: "/img/logos/networks/polygon-logo.png", chainId: mumbaiChainId },
     { name: "Gnosis (Testnet)", img: "/img/logos/networks/gnosis-logo.png", chainId: "0x27D8" },
-    { name: "Linea (Testnet)", img: "/img/logos/networks/linea-logo.png", chainId: "0xE704" },
-    { name: "Fuji (Testnet)", img: "/img/logos/networks/avalanche-logo.png", chainId: "0xa869" },
+    { name: "Sepolia (Testnet)", img: "/img/logos/networks/ethereum-logo.png", chainId: "0xaa36a7" },
 ];
 
 const ScrollDownMenu: React.FC = () => {

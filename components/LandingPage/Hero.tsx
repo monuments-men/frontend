@@ -4,20 +4,69 @@ import { useState } from "react";
 import ScrollDown from "components/_shared/ScrollDown";
 
 const Hero = () => {
-    const [{ mumbaiNFTcontract, fujiNFTcontract, selectedNetwork }] = useContractContext();
+    const [
+        {
+            mumbaiNFTcontract,
+            selectedNetwork,
+            multiPassMumbai,
+            sepoliaNFTcontract,
+            multiPassSepolia,
+            multiPassArbitrum,
+            multiPassGnosis,
+            multiPassOptimism,
+            gnosisNFTcontract,
+            arbitrumNFTcontract,
+            optimismNFTcontract,
+        },
+    ] = useContractContext();
 
     const [minting, setMinting] = useState(false);
     const [minted, setMinted] = useState(false);
 
+    const networksContracts = {
+        "Polygon (Mumbai)": {
+            nftContract: mumbaiNFTcontract,
+            multiPass: multiPassMumbai,
+        },
+        "Sepolia (Testnet)": {
+            nftContract: sepoliaNFTcontract,
+            multiPass: multiPassSepolia,
+        },
+        "Arbitrum (Goerli)": {
+            nftContract: arbitrumNFTcontract,
+            multiPass: multiPassArbitrum,
+        },
+        "Optimism (Goerli)": {
+            nftContract: optimismNFTcontract,
+            multiPass: multiPassOptimism,
+        },
+        "Gnosis (Testnet)": {
+            nftContract: gnosisNFTcontract,
+            multiPass: multiPassGnosis,
+        },
+    };
+
     const mint = async () => {
         try {
-            const contractToCall = selectedNetwork === "Polygon (Mumbai)" ? mumbaiNFTcontract : fujiNFTcontract;
+            const contractToCall = networksContracts[selectedNetwork].nftContract;
             const tx = await contractToCall.mint();
             setMinting(true);
             const receipt = await tx.wait();
             if (receipt.status == 1) {
+                console.log("MINTED");
                 setMinted(true);
                 setMinting(false);
+                const tx1 = await networksContracts[selectedNetwork].multiPass.checkFees("10109", "0x1e049eE762A31c27588d522c596045616C8d5Cf4");
+                console.log("TX1", tx1);
+                const tx2 = await networksContracts[selectedNetwork].multiPass.broadcastNFTOwnership(
+                    "10109",
+                    "0x1e049eE762A31c27588d522c596045616C8d5Cf4",
+                    { value: tx1 }
+                );
+                const receipt2 = await tx2.wait();
+                if (receipt2.status == 1) {
+                    console.log("NFT ownership broadcasted");
+                }
             }
         } catch (error) {
             setMinting(false);

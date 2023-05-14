@@ -7,18 +7,22 @@ import Image from "next/image";
 import { defaultAbiCoder as abi } from "ethers/lib/utils";
 
 const WorldcoinVerify = () => {
-    const [{ address }] = useUserContext();
+    const [{ address, messageToShow }] = useUserContext();
     const [{ multiChainVerifier }] = useContractContext();
 
     const button = { label: "WorldCoin", img: worldCoinLogo, color: "text-black", diabled: false };
 
     const handleProof = async (result: ISuccessResult) => {
         try {
-            console.log("result", result);
-
             const unpackedProof = abi.decode(["uint256[8]"], result.proof)[0];
-
-            const tx = await multiChainVerifier.registerWithWorldcoin(address, result.merkle_root, result.nullifier_hash, unpackedProof, 10, "");
+            const tx = await multiChainVerifier.registerWithWorldcoin(
+                address,
+                result.merkle_root,
+                result.nullifier_hash,
+                unpackedProof,
+                137,
+                messageToShow
+            );
             const recipte = await tx.wait();
             if (recipte.status == 1) {
                 console.log("verified");
@@ -31,7 +35,7 @@ const WorldcoinVerify = () => {
     return (
         <>
             <IDKitWidget
-                action="register"
+                action="app_4dbefa59fdf71b9b734938badbf9c23b"
                 signal={solidityEncode(["address"], [address])}
                 handleVerify={handleProof}
                 app_id="app_4dbefa59fdf71b9b734938badbf9c23b"
@@ -42,7 +46,7 @@ const WorldcoinVerify = () => {
                         onClick={open}
                         className={`flex ${button.color} ${
                             button.diabled && "cursor-not-allowed bg-gray-600 text-white"
-                        } w-[300px] cursor-pointer items-center gap-5 rounded-lg shadow-md dark:bg-white`}
+                        } w-[350px] cursor-pointer items-center gap-5 rounded-lg shadow-md dark:bg-white`}
                     >
                         {button.img && (
                             <div className="relative h-[50px] w-[50px]">

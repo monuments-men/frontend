@@ -3,7 +3,6 @@ import React from "react";
 import Container from "./Container";
 
 export default function Footer() {
-    const navigation = ["Home", "App"];
     return (
         <>
             <Container>
@@ -14,22 +13,10 @@ export default function Footer() {
                         </Link>
                     </div>
 
-                    <div className="flex w-1/5 justify-center">
-                        {navigation.map((item, index) => (
-                            <Link
-                                key={index}
-                                href="/"
-                                className="w-full rounded-md px-4 text-gray-500 hover:text-indigo-500 focus:bg-indigo-100 focus:text-indigo-500 focus:outline-none dark:text-gray-300 dark:focus:bg-trueGray-700"
-                            >
-                                {item}
-                            </Link>
-                        ))}
-                    </div>
-
                     <div className="relative w-2/5">
                         <div className="absolute right-0">
                             <div className="flex text-gray-400 dark:text-gray-500">
-                                <a href="https://twitter.com/web3templates" target="_blank" rel="noopener">
+                                <a href="https://twitter.com/GalaxyThroneIO" target="_blank" rel="noopener">
                                     <span className="sr-only">Twitter</span>
                                     <Twitter />
                                 </a>

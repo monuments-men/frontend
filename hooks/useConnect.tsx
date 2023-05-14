@@ -3,9 +3,21 @@ import { useEffect } from "react";
 import { useUserContext } from "../context/UserContext";
 import { ethers } from "ethers";
 import { useContractContext } from "../context/ContractContext";
-import { multiChainVerifier, mumbaiNFTAddress } from "lib/contracts";
+import {
+    arbitrumNFTAddress,
+    gnosisNFTAddress,
+    multiChainVerifier,
+    multiPassArbitrum,
+    multiPassGnosis,
+    multiPassMumbai,
+    multiPassOptimism,
+    multiPassSepolia,
+    mumbaiNFTAddress,
+    optimismNFTAddress,
+} from "lib/contracts";
 import NFTabi from "lib/contracts/abi/ABI.json";
 import multiChainVerifierAbi from "lib/contracts/abi/MultichainVerifier.json";
+import multipassABI from "lib/contracts/abi/multipassABI.json";
 
 const useConnect = () => {
     const [{ wallet, connecting }, connect, disconnect] = useConnectWallet();
@@ -55,13 +67,45 @@ const useConnect = () => {
                 type: "UPDATE_MUMBAI_NFT_CONTRACT",
                 mumbaiNFTcontract: new ethers.Contract(mumbaiNFTAddress, NFTabi, signer || provider),
             });
-            // dispatch({
-            //     type: "UPDATE_FUJI_NFT_CONTRACT",
-            //     fujiNFTcontract: new ethers.Contract(, NFTabi, signer || provider),
-            // });
             dispatch({
                 type: "UPDATE_MULTICHAIN_VERIFIER",
                 multiChainVerifier: new ethers.Contract(multiChainVerifier, multiChainVerifierAbi, signer || provider),
+            });
+            dispatch({
+                type: "UPDATE_MULTIPASS_MUMBAI",
+                multiPassMumbai: new ethers.Contract(multiPassMumbai, multipassABI, signer || provider),
+            });
+            dispatch({
+                type: "UPDATE_MULTIPASS_SEPOLIA",
+                multiPassSepolia: new ethers.Contract(multiPassSepolia, multipassABI, signer || provider),
+            });
+            dispatch({
+                type: "UPDATE_SEPOLIA_NFT_CONTRACT",
+                sepoliaNFTcontract: new ethers.Contract(mumbaiNFTAddress, NFTabi, signer || provider),
+            });
+            dispatch({
+                type: "UPDATE_MULTIPASS_ARBITRUM",
+                multiPassArbitrum: new ethers.Contract(multiPassArbitrum, multipassABI, signer || provider),
+            });
+            dispatch({
+                type: "UPDATE_ARBITRUM_NFT_CONTRACT",
+                arbitrumNFTcontract: new ethers.Contract(arbitrumNFTAddress, NFTabi, signer || provider),
+            });
+            dispatch({
+                type: "UPDATE_MULTIPASS_OPTIMISM",
+                multiPassOptimism: new ethers.Contract(multiPassOptimism, multipassABI, signer || provider),
+            });
+            dispatch({
+                type: "UPDATE_OPTIMISM_NFT_CONTRACT",
+                optimismNFTcontract: new ethers.Contract(optimismNFTAddress, NFTabi, signer || provider),
+            });
+            dispatch({
+                type: "UPDATE_MULTIPASS_GNOSIS",
+                multiPassGnosis: new ethers.Contract(multiPassGnosis, multipassABI, signer || provider),
+            });
+            dispatch({
+                type: "UPDATE_GNOSIS_NFT_CONTRACT",
+                gnosisNFTcontract: new ethers.Contract(gnosisNFTAddress, NFTabi, signer || provider),
             });
         }
     }, [provider, signer]);

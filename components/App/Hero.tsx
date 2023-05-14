@@ -10,12 +10,13 @@ import { lensAddress } from "lib/contracts";
 import ERC721 from "lib/contracts/abi/ERC721.json";
 import { maticChainId } from "lib";
 import WorldcoinVerify from "components/Worldcoin";
+import SectionTitle from "components/LandingPage/SectionTitle";
 
 const AppHero = ({ data, imgPos }) => {
     const [{ wallet }] = useConnectWallet();
     const [{ connectedChain }, setChain] = useSetChain();
     const [{ lens, multiChainVerifier }, dispatch] = useContractContext();
-    const [{ address, signer, provider }] = useUserContext();
+    const [{ address, signer, provider, messageToShow }, userDispatch] = useUserContext();
     const previousChainId = useRef<string>();
     const [lensTokenId, setLensTokenId] = useState<string>("");
 
@@ -32,7 +33,7 @@ const AppHero = ({ data, imgPos }) => {
 
     const verifyWithLens = async () => {
         try {
-            const tx = await multiChainVerifier.registerWithLens(lensTokenId, 10000, "0x");
+            const tx = await multiChainVerifier.registerWithLens(lensTokenId, 137, messageToShow);
             const recipt = await tx.wait();
             if (recipt.status == 1) {
                 console.log("verified");
@@ -44,7 +45,7 @@ const AppHero = ({ data, imgPos }) => {
 
     const registerWithNoID = async () => {
         try {
-            const tx = await multiChainVerifier.registerWithoutId(10, "");
+            const tx = await multiChainVerifier.registerWithoutId(137, messageToShow);
             console.log("tx", tx);
             const recipt = await tx.wait();
             if (recipt.status == 1) {
@@ -54,8 +55,6 @@ const AppHero = ({ data, imgPos }) => {
             console.log(error);
         }
     };
-
-    console.log("multiChainVerifier", multiChainVerifier);
 
     const checkLens = async () => {
         try {
@@ -92,6 +91,13 @@ const AppHero = ({ data, imgPos }) => {
             checkLens();
         }
     }, [lens]);
+
+    const handleInputChange = (e) => {
+        userDispatch({
+            type: "UPDATE_MESSAGE_TO_SHOW",
+            messageToShow: e.target.value,
+        });
+    };
 
     return (
         <>
@@ -130,7 +136,7 @@ const AppHero = ({ data, imgPos }) => {
                                     onClick={() => (button.label === "Lens" ? verifyWithLens() : registerWithNoID())}
                                     className={`flex ${button.color} ${
                                         button.diabled && "cursor-not-allowed bg-gray-600 text-white"
-                                    } w-[300px] cursor-pointer items-center gap-5 rounded-lg shadow-md dark:bg-white`}
+                                    } w-[350px] cursor-pointer items-center gap-5 rounded-lg shadow-md dark:bg-white`}
                                 >
                                     {button.img && (
                                         <div className="relative h-[50px] w-[50px]">
@@ -144,8 +150,28 @@ const AppHero = ({ data, imgPos }) => {
                             ))}
                             <WorldcoinVerify />
                         </div>
+
+                        <div className="mt-5 flex w-full flex-col gap-3">
+                            Write a message to show in the monument:
+                            <div className=" flex w-[350px] cursor-pointer items-center gap-5 rounded-lg shadow-md dark:bg-white">
+                                <input
+                                    onChange={handleInputChange}
+                                    type="text"
+                                    maxLength={20}
+                                    className="w-full rounded px-4 py-3 text-lg font-semibold outline-none"
+                                    placeholder="put some text to show in the monument nft"
+                                />
+                            </div>
+                        </div>
                     </div>
                 </div>
+            </Container>
+            <Container>
+                <SectionTitle pretitle="Result sample" title="You are going to put your name or message in the white screens">
+                    By minting an nft on a network of your preference you will be able to use functionalities on polygon <br /> <br />
+                    You just need to own it
+                </SectionTitle>
+                <img src="/img/sample.jpg" className="rounded-xl" />
             </Container>
         </>
     );
