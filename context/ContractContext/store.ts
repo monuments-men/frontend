@@ -20,6 +20,9 @@ export interface State {
 
     gnosisNFTcontract: any;
     multiPassGnosis: any;
+
+    zkEVMNFTcontract: any;
+    multiPassZkEVM: any;
 }
 
 export const initialState: State = {
@@ -42,4 +45,7 @@ export const initialState: State = {
 
     gnosisNFTcontract: undefined,
     multiPassGnosis: undefined,
+
+    zkEVMNFTcontract: undefined,
+    multiPassZkEVM: undefined,
 };

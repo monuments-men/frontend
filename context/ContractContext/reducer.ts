@@ -13,7 +13,9 @@ export type Action =
     | { type: "UPDATE_MULTIPASS_OPTIMISM"; multiPassOptimism: State["multiPassOptimism"] }
     | { type: "UPDATE_OPTIMISM_NFT_CONTRACT"; optimismNFTcontract: State["optimismNFTcontract"] }
     | { type: "UPDATE_MULTIPASS_GNOSIS"; multiPassGnosis: State["multiPassGnosis"] }
-    | { type: "UPDATE_GNOSIS_NFT_CONTRACT"; gnosisNFTcontract: State["gnosisNFTcontract"] };
+    | { type: "UPDATE_GNOSIS_NFT_CONTRACT"; gnosisNFTcontract: State["gnosisNFTcontract"] }
+    | { type: "UPDATE_MULTIPASS_ZK_EVM"; multiPassZkEVM: State["multiPassZkEVM"] }
+    | { type: "UPDATE_ZK_EVM_NFT_CONTRACT"; zkEVMNFTcontract: State["zkEVMNFTcontract"] };
 
 export const reducer = (state: State, action: Action): State => {
     switch (action.type) {
@@ -81,6 +83,16 @@ export const reducer = (state: State, action: Action): State => {
             return {
                 ...state,
                 gnosisNFTcontract: action.gnosisNFTcontract,
+            };
+        case "UPDATE_MULTIPASS_ZK_EVM":
+            return {
+                ...state,
+                multiPassZkEVM: action.multiPassZkEVM,
+            };
+        case "UPDATE_ZK_EVM_NFT_CONTRACT":
+            return {
+                ...state,
+                zkEVMNFTcontract: action.zkEVMNFTcontract,
             };
 
         default:

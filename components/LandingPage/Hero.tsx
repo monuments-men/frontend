@@ -17,6 +17,8 @@ const Hero = () => {
             gnosisNFTcontract,
             arbitrumNFTcontract,
             optimismNFTcontract,
+            zkEVMNFTcontract,
+            multiPassZkEVM,
         },
     ] = useContractContext();
 
@@ -43,6 +45,10 @@ const Hero = () => {
         "Gnosis (Testnet)": {
             nftContract: gnosisNFTcontract,
             multiPass: multiPassGnosis,
+        },
+        "zkEVM (Goerli)": {
+            nftContract: zkEVMNFTcontract,
+            multiPass: multiPassZkEVM,
         },
     };
 

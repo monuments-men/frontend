@@ -15,3 +15,6 @@ export const multiPassOptimism = "0x139bb175386fF5424208d80f4958E37ba4853b88";
 
 export const gnosisNFTAddress = "0x7E90cF3FF8f93Ab2BA0c879Db92dE5c68Db5C3d5";
 export const multiPassGnosis = "0x803305b3fdFAAda80CEEe63DbCB06d89D68015Fa";
+
+export const zkEVMNFTAddress = "0xc7FA83f9A1AD54aa8F3bFEe28aa700f490ABb225";
+export const multiPassZkEVM = " 0x37C7C0b78502389214c783CA6C824e70f80420Ae";

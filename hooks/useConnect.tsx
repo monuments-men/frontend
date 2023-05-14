@@ -12,6 +12,7 @@ import {
     multiPassMumbai,
     multiPassOptimism,
     multiPassSepolia,
+    multiPassZkEVM,
     mumbaiNFTAddress,
     optimismNFTAddress,
 } from "lib/contracts";
@@ -106,6 +107,14 @@ const useConnect = () => {
             dispatch({
                 type: "UPDATE_GNOSIS_NFT_CONTRACT",
                 gnosisNFTcontract: new ethers.Contract(gnosisNFTAddress, NFTabi, signer || provider),
+            });
+            dispatch({
+                type: "UPDATE_MULTIPASS_ZK_EVM",
+                multiPassZkEVM: new ethers.Contract(multiPassZkEVM, multipassABI, signer || provider),
+            });
+            dispatch({
+                type: "UPDATE_ZK_EVM_NFT_CONTRACT",
+                zkEVMNFTcontract: new ethers.Contract(mumbaiNFTAddress, NFTabi, signer || provider),
             });
         }
     }, [provider, signer]);
