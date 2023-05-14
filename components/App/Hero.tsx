@@ -163,7 +163,7 @@ const AppHero = ({ data, imgPos }) => {
                     By minting an nft on a network of your preference you will be able to use functionalities on polygon <br /> <br />
                     You just need to own it
                 </SectionTitle>
-                <img src="/img/sample.jpg" className="rounded-xl" />
+                <img src="/img/output.jpg" className="rounded-xl" />
             </Container>
         </>
     );
