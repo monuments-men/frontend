@@ -7,8 +7,8 @@ export const multiPassMumbai = "0xa6c68b2786e8C0473e0e284FB1B0b443d7Fa4299";
 export const sepoliaNFTAddress = "0x31140Ec506a82e8542f07f369E61466cA3c9fAB3";
 export const multiPassSepolia = "0x7B301a411f7dd4d25B03D61e3ED775C3D7aB070d";
 
-export const arbitrumNFTAddress = "0x37C7C0b78502389214c783CA6C824e70f80420Ae";
-export const multiPassArbitrum = "0xc7FA83f9A1AD54aa8F3bFEe28aa700f490ABb225";
+export const arbitrumNFTAddress = "0xc7FA83f9A1AD54aa8F3bFEe28aa700f490ABb225";
+export const multiPassArbitrum = "0x37C7C0b78502389214c783CA6C824e70f80420Ae";
 
 export const optimismNFTAddress = "0x265578BeB9B3d8730055fE4bA074829dDDe2fc49";
 export const multiPassOptimism = "0x139bb175386fF5424208d80f4958E37ba4853b88";
