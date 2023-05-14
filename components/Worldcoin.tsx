@@ -46,7 +46,7 @@ const WorldcoinVerify = () => {
                         onClick={open}
                         className={`flex ${button.color} ${
                             button.diabled && "cursor-not-allowed bg-gray-600 text-white"
-                        } w-[350px] cursor-pointer items-center gap-5 rounded-lg shadow-md dark:bg-white`}
+                        } w-[400px] cursor-pointer items-center gap-5 rounded-lg shadow-md dark:bg-white`}
                     >
                         {button.img && (
                             <div className="relative h-[50px] w-[50px]">

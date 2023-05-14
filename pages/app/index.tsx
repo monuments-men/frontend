@@ -4,7 +4,7 @@ import { benefitTwo } from "lib/data";
 const AppHome = () => {
     return (
         <div>
-            <AppHero imgPos="right" data={benefitTwo} />
+            <AppHero imgPos="left" data={benefitTwo} />
         </div>
     );
 };

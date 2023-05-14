@@ -101,7 +101,7 @@ const AppHero = ({ data, imgPos }) => {
 
     return (
         <>
-            <Container className="mb-20 flex flex-row-reverse flex-wrap lg:flex-nowrap lg:gap-10 ">
+            <Container className="mb-20 flex flex-wrap lg:flex-nowrap lg:gap-10 ">
                 <div className={`flex w-full items-center justify-center lg:w-1/2 ${imgPos === "right" ? "lg:order-1" : ""}`}>
                     <div>
                         <img src="/img/hero-2.png" alt="Benefits" className={"h-[500px] w-[610px] rounded-xl object-cover"} />
@@ -121,14 +121,27 @@ const AppHero = ({ data, imgPos }) => {
                         </div>
 
                         <div className="mt-5 flex w-full flex-col gap-3">
-                            Register with:
+                            {"1)"} Write a message to show in the monument:
+                            <div className=" flex w-[400px] cursor-pointer items-center gap-5 rounded-lg shadow-md dark:bg-white">
+                                <input
+                                    onChange={handleInputChange}
+                                    type="text"
+                                    maxLength={20}
+                                    className="w-full rounded px-4 py-3 text-lg font-semibold outline-none"
+                                    placeholder="put some text to show in the monument nft"
+                                />
+                            </div>
+                        </div>
+
+                        <div className="mt-5 flex w-full flex-col gap-3">
+                            {"2)"} Register with:
                             {buttons.map((button, index) => (
                                 <div
                                     key={index}
                                     onClick={() => (button.label === "Lens" ? verifyWithLens() : registerWithNoID())}
                                     className={`flex ${button.color} ${
                                         button.diabled && "cursor-not-allowed bg-gray-600 text-white"
-                                    } w-[350px] cursor-pointer items-center gap-5 rounded-lg shadow-md dark:bg-white`}
+                                    } w-[400px] cursor-pointer items-center gap-5 rounded-lg shadow-md dark:bg-white`}
                                 >
                                     {button.img && (
                                         <div className="relative h-[50px] w-[50px]">
@@ -141,19 +154,6 @@ const AppHero = ({ data, imgPos }) => {
                                 </div>
                             ))}
                             <WorldcoinVerify />
-                        </div>
-
-                        <div className="mt-5 flex w-full flex-col gap-3">
-                            Write a message to show in the monument:
-                            <div className=" flex w-[350px] cursor-pointer items-center gap-5 rounded-lg shadow-md dark:bg-white">
-                                <input
-                                    onChange={handleInputChange}
-                                    type="text"
-                                    maxLength={20}
-                                    className="w-full rounded px-4 py-3 text-lg font-semibold outline-none"
-                                    placeholder="put some text to show in the monument nft"
-                                />
-                            </div>
                         </div>
                     </div>
                 </div>
