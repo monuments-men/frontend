@@ -35,7 +35,7 @@ const benefitOne = {
 
 const benefitTwo = {
     title: "Leave your mark in Convento do Beato",
-    desc: "Register with Lens or Worldcoin to have a best spot in the monument NFT, otherwise you can still register without ID and got a lateral one",
+    desc: "Register with Lens or Worldcoin to have the best spot in the monument NFT, otherwise you can still register without an ID for a side spot",
 };
 
 export { benefitOne, benefitTwo };
